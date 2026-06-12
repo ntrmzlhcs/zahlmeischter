@@ -1,0 +1,5 @@
+# Avoid line-ending normalization churn on Xcode project files
+*.pbxproj -text
+*.xcscheme -text
+*.xcworkspacedata -text
+*.xcsettings -text
