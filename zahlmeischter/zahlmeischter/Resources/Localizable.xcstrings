@@ -1,0 +1,425 @@
+{
+  "sourceLanguage" : "de",
+  "strings" : {
+    "" : {
+
+    },
+    "%" : {
+
+    },
+    "0" : {
+
+    },
+    "0.00" : {
+
+    },
+    "Abbrechen" : {
+      "comment" : "Cancel button in the group and expense editors.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cancel"
+          }
+        }
+      }
+    },
+    "Aufteilung" : {
+      "comment" : "Section label for the split-method selector in the expense editor.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Split"
+          }
+        }
+      }
+    },
+    "Ausgabe hinzufügen" : {
+      "comment" : "Toolbar action to add a new expense to the active group.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add expense"
+          }
+        }
+      }
+    },
+    "ausgeglichen" : {
+      "comment" : "Balance card label when a member's open balance is zero.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "settled up"
+          }
+        }
+      }
+    },
+    "Benutzerdefiniert" : {
+      "comment" : "Split method: each participant's amount entered directly.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Custom"
+          }
+        }
+      }
+    },
+    "Beschreibung" : {
+      "comment" : "Label for the expense description/title field.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Description"
+          }
+        }
+      }
+    },
+    "Betrag" : {
+      "comment" : "Label above the expense amount field.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Amount"
+          }
+        }
+      }
+    },
+    "Betrag von %@" : {
+      "comment" : "Accessibility label for a participant's custom amount field.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Amount for %@"
+          }
+        }
+      }
+    },
+    "Bezahlt von" : {
+      "comment" : "Label for the payer picker in the expense editor.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Paid by"
+          }
+        }
+      }
+    },
+    "dabei" : {
+      "comment" : "Accessibility value: a member is included in the split.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "included"
+          }
+        }
+      }
+    },
+    "Datum" : {
+      "comment" : "Label for the expense date picker.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Date"
+          }
+        }
+      }
+    },
+    "Dein Name" : {
+      "comment" : "Accessibility label for the current user's name field when creating a group.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your name"
+          }
+        }
+      }
+    },
+    "Dein Saldo" : {
+      "comment" : "Dashboard hero label above the total balance figure.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your balance"
+          }
+        }
+      }
+    },
+    "Die Beträge müssen zusammen %@ ergeben." : {
+      "comment" : "Validation message when custom split amounts don't sum to the total.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The amounts must add up to %@."
+          }
+        }
+      }
+    },
+    "Die Prozente müssen zusammen 100 % ergeben." : {
+      "comment" : "Validation message when split percentages don't sum to 100.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The percentages must add up to 100%."
+          }
+        }
+      }
+    },
+    "Du" : {
+      "comment" : "Tag marking the current user's row in the member list.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You"
+          }
+        }
+      }
+    },
+    "Erste Gruppe erstellen" : {
+      "comment" : "First-run button to create the very first group.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Create first group"
+          }
+        }
+      }
+    },
+    "Erstelle deine erste Gruppe, um Ausgaben zu teilen." : {
+      "comment" : "First-run subtitle prompting group creation.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Create your first group to start splitting expenses."
+          }
+        }
+      }
+    },
+    "Fertig" : {
+      "comment" : "Keyboard toolbar button that dismisses the keyboard.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Done"
+          }
+        }
+      }
+    },
+    "Gleich" : {
+      "comment" : "Split method: divide the total evenly.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Equal"
+          }
+        }
+      }
+    },
+    "Gruppenname" : {
+      "comment" : "Label for the group name field, also its accessibility label.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Group name"
+          }
+        }
+      }
+    },
+    "im Plus" : {
+      "comment" : "Balance card label when a member is ahead (the group owes them).",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "in credit"
+          }
+        }
+      }
+    },
+    "Letzte Ausgaben" : {
+      "comment" : "Section header above the recent-expenses list on the dashboard.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Recent expenses"
+          }
+        }
+      }
+    },
+    "Mitglied entfernen" : {
+      "comment" : "Accessibility label for the remove-member button.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Remove member"
+          }
+        }
+      }
+    },
+    "Mitglied hinzufügen" : {
+      "comment" : "Button to add another member when creating a group.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add member"
+          }
+        }
+      }
+    },
+    "Mitglieder" : {
+      "comment" : "Section label for the member list when creating a group.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Members"
+          }
+        }
+      }
+    },
+    "Name des Mitglieds" : {
+      "comment" : "Accessibility label for an additional member's name field.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Member name"
+          }
+        }
+      }
+    },
+    "Neue Gruppe" : {
+      "comment" : "Menu item / title for creating a new group.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "New group"
+          }
+        }
+      }
+    },
+    "nicht dabei" : {
+      "comment" : "Accessibility value: a member is excluded from the split.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "not included"
+          }
+        }
+      }
+    },
+    "Noch keine Ausgaben hier. Leg die erste an, sobald ihr etwas geteilt habt." : {
+      "comment" : "Dashboard empty state when there are no expenses yet.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No expenses here yet. Add the first one as soon as you've shared something."
+          }
+        }
+      }
+    },
+    "offen" : {
+      "comment" : "Balance card label when a member still owes the group.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "owes"
+          }
+        }
+      }
+    },
+    "Prozent" : {
+      "comment" : "Split method: each participant owes a percentage of the total.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Percent"
+          }
+        }
+      }
+    },
+    "Prozentanteil von %@" : {
+      "comment" : "Accessibility label for a participant's percentage field.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Percentage share for %@"
+          }
+        }
+      }
+    },
+    "Speichern" : {
+      "comment" : "Save button in the group and expense editors.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Save"
+          }
+        }
+      }
+    },
+    "Wähle mindestens eine Person." : {
+      "comment" : "Validation message when no participant is selected for a split.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Select at least one person."
+          }
+        }
+      }
+    },
+    "Währung" : {
+      "comment" : "Label for the currency picker.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Currency"
+          }
+        }
+      }
+    },
+    "Willkommen" : {
+      "comment" : "First-run welcome heading.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Welcome"
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}

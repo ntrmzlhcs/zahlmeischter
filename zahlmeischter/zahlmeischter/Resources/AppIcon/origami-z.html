@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<!-- zahlmeischter app icon — Concept 1: Origami folded Z -->
+<!-- One paper ribbon folded into a Z; facets shift violet -> teal -> pink as it folds. -->
+<html>
+<head><meta charset="utf-8"><style>html,body{margin:0;padding:0;background:#2B2A55}svg{display:block}</style></head>
+<body>
+<svg width="1024" height="1024" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- four-stop mesh gradient (design.md: indigo / violet / teal / pink) -->
+    <radialGradient id="gViolet" cx="20%" cy="18%" r="72%">
+      <stop offset="0%" stop-color="#6C5CE7" stop-opacity="0.95"/>
+      <stop offset="45%" stop-color="#6C5CE7" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#6C5CE7" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="gTeal" cx="86%" cy="15%" r="64%">
+      <stop offset="0%" stop-color="#4ECDC4" stop-opacity="0.9"/>
+      <stop offset="48%" stop-color="#4ECDC4" stop-opacity="0.45"/>
+      <stop offset="100%" stop-color="#4ECDC4" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="gPink" cx="14%" cy="88%" r="66%">
+      <stop offset="0%" stop-color="#F2A6C8" stop-opacity="0.85"/>
+      <stop offset="50%" stop-color="#F2A6C8" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#F2A6C8" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="gIndigo" cx="90%" cy="90%" r="62%">
+      <stop offset="0%" stop-color="#201B44" stop-opacity="0.92"/>
+      <stop offset="55%" stop-color="#201B44" stop-opacity="0.45"/>
+      <stop offset="100%" stop-color="#201B44" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="vignette" cx="50%" cy="47%" r="75%">
+      <stop offset="0%" stop-color="#000000" stop-opacity="0"/>
+      <stop offset="70%" stop-color="#000000" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0.30"/>
+    </radialGradient>
+    <!-- warm-tinted soft drop shadow under the folded paper -->
+    <filter id="paperShadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="20" stdDeviation="24" flood-color="#231733" flood-opacity="0.45"/>
+    </filter>
+  </defs>
+
+  <!-- background -->
+  <rect width="1024" height="1024" fill="#2B2A55"/>
+  <rect width="1024" height="1024" fill="url(#gViolet)"/>
+  <rect width="1024" height="1024" fill="url(#gTeal)"/>
+  <rect width="1024" height="1024" fill="url(#gPink)"/>
+  <rect width="1024" height="1024" fill="url(#gIndigo)"/>
+  <rect width="1024" height="1024" fill="url(#vignette)"/>
+
+  <!-- folded-paper Z: 3 segments, 2 facets each (light ridge / dark valley) -->
+  <g filter="url(#paperShadow)">
+    <!-- top bar -->
+    <polygon points="250,268 774,268 774,328 250,328" fill="#F5F2FF"/>
+    <polygon points="250,328 774,328 774,388 250,388" fill="#CBBAF1"/>
+    <!-- diagonal ribbon -->
+    <polygon points="774,388 656.5,388 367.5,636 485,636" fill="#EAF7F4"/>
+    <polygon points="656.5,388 539,388 250,636 367.5,636" fill="#9FE3DC"/>
+    <!-- bottom bar -->
+    <polygon points="250,636 774,636 774,696 250,696" fill="#FCE5F0"/>
+    <polygon points="250,696 774,696 774,756 250,756" fill="#F2A6C8"/>
+
+    <!-- crease lines (subtle ridge shadows) -->
+    <g stroke="#2B2A55" stroke-opacity="0.13" stroke-width="2" fill="none">
+      <line x1="250" y1="328" x2="774" y2="328"/>
+      <line x1="656.5" y1="388" x2="367.5" y2="636"/>
+      <line x1="250" y1="696" x2="774" y2="696"/>
+    </g>
+    <!-- ambient occlusion at the two fold corners -->
+    <polygon points="539,388 656.5,388 485,636 367.5,636" fill="#2B2A55" fill-opacity="0.06"/>
+  </g>
+</svg>
+</body>
+</html>

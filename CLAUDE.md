@@ -19,8 +19,7 @@ households, travel.
 
 - **UI**: SwiftUI, iOS 26.4 deployment target (current Xcode default — revisit
   if a lower target is needed for device reach)
-- **Language**: Swift 5.0 (current setting; consider Swift 6 strict
-  concurrency once the architecture stabilizes — see Open Questions)
+- **Language**: Swift 6.4 with Strict Concurrency enabled from day one
 - **Persistence**: SwiftData
 - **Sync**: CloudKit — private database via SwiftData's automatic CloudKit
   integration, **plus** manual CKShare work for group sharing (see "CloudKit
@@ -220,5 +219,4 @@ xcodebuild -project zahlmeischter/zahlmeischter.xcodeproj -scheme zahlmeischter 
 
 - CKShare implementation approach — pending the sharing spike
 - Exchange rate data source for multi-currency conversion
-- Swift 6 strict concurrency adoption timeline
 - English (`en`) localization scope for V1 vs. German-only launch

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<!-- zahlmeischter app icon — Concept 2: Glass-shard Z (design.md Concept B) -->
+<!-- A beveled translucent glass Z floating on the mesh gradient. -->
+<html>
+<head><meta charset="utf-8"><style>html,body{margin:0;padding:0;background:#2B2A55}svg{display:block}</style></head>
+<body>
+<svg width="1024" height="1024" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="gViolet" cx="20%" cy="18%" r="72%">
+      <stop offset="0%" stop-color="#6C5CE7" stop-opacity="0.95"/>
+      <stop offset="45%" stop-color="#6C5CE7" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#6C5CE7" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="gTeal" cx="86%" cy="15%" r="64%">
+      <stop offset="0%" stop-color="#4ECDC4" stop-opacity="0.9"/>
+      <stop offset="48%" stop-color="#4ECDC4" stop-opacity="0.45"/>
+      <stop offset="100%" stop-color="#4ECDC4" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="gPink" cx="14%" cy="88%" r="66%">
+      <stop offset="0%" stop-color="#F2A6C8" stop-opacity="0.85"/>
+      <stop offset="50%" stop-color="#F2A6C8" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#F2A6C8" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="gIndigo" cx="90%" cy="90%" r="62%">
+      <stop offset="0%" stop-color="#201B44" stop-opacity="0.92"/>
+      <stop offset="55%" stop-color="#201B44" stop-opacity="0.45"/>
+      <stop offset="100%" stop-color="#201B44" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="vignette" cx="50%" cy="47%" r="75%">
+      <stop offset="0%" stop-color="#000000" stop-opacity="0"/>
+      <stop offset="70%" stop-color="#000000" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0.30"/>
+    </radialGradient>
+
+    <!-- the Z silhouette, reused for body / glow / clip -->
+    <path id="zpath" d="M250,268 L774,268 L774,388 L485,636 L774,636 L774,756 L250,756 L250,636 L539,388 L250,388 Z"/>
+
+    <!-- frosted glass body: brighter at top-left -->
+    <linearGradient id="glassBody" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.34"/>
+      <stop offset="55%" stop-color="#ffffff" stop-opacity="0.14"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0.05"/>
+    </linearGradient>
+    <!-- diagonal specular sheen -->
+    <linearGradient id="sheen" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0"/>
+      <stop offset="48%" stop-color="#ffffff" stop-opacity="0.55"/>
+      <stop offset="52%" stop-color="#ffffff" stop-opacity="0.55"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+
+    <clipPath id="clipZ"><use href="#zpath"/></clipPath>
+    <filter id="glow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="26"/>
+    </filter>
+    <filter id="glassDrop" x="-40%" y="-40%" width="180%" height="180%">
+      <feDropShadow dx="0" dy="12" stdDeviation="20" flood-color="#140F33" flood-opacity="0.5"/>
+    </filter>
+  </defs>
+
+  <!-- background -->
+  <rect width="1024" height="1024" fill="#2B2A55"/>
+  <rect width="1024" height="1024" fill="url(#gViolet)"/>
+  <rect width="1024" height="1024" fill="url(#gTeal)"/>
+  <rect width="1024" height="1024" fill="url(#gPink)"/>
+  <rect width="1024" height="1024" fill="url(#gIndigo)"/>
+  <rect width="1024" height="1024" fill="url(#vignette)"/>
+
+  <!-- cool outer glow -->
+  <use href="#zpath" fill="#9F8CF5" opacity="0.55" filter="url(#glow)"/>
+
+  <!-- glass body + drop shadow -->
+  <use href="#zpath" fill="url(#glassBody)" filter="url(#glassDrop)"/>
+
+  <!-- specular sheen, clipped to the Z -->
+  <g clip-path="url(#clipZ)">
+    <rect x="-200" y="300" width="1424" height="150" fill="url(#sheen)"
+          transform="rotate(-25 512 512)"/>
+    <!-- faint second highlight band -->
+    <rect x="-200" y="560" width="1424" height="70" fill="url(#sheen)" opacity="0.5"
+          transform="rotate(-25 512 512)"/>
+  </g>
+
+  <!-- bright glass rim + soft inner bottom-right edge -->
+  <use href="#zpath" fill="none" stroke="#ffffff" stroke-opacity="0.6" stroke-width="3.5"/>
+  <use href="#zpath" fill="none" stroke="#2B2A55" stroke-opacity="0.22" stroke-width="1.5"/>
+</svg>
+</body>
+</html>

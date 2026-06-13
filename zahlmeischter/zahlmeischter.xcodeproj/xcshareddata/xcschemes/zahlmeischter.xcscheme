@@ -29,6 +29,16 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "7E57000000000000000000A1"
+               BuildableName = "zahlmeischterTests.xctest"
+               BlueprintName = "zahlmeischterTests"
+               ReferencedContainer = "container:zahlmeischter.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<!-- zahlmeischter app icon — Concept 3: Split-diagonal Z -->
+<!-- The Z is cleaved along its diagonal into two offset paper halves: splitting the bill. -->
+<html>
+<head><meta charset="utf-8"><style>html,body{margin:0;padding:0;background:#2B2A55}svg{display:block}</style></head>
+<body>
+<svg width="1024" height="1024" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="gViolet" cx="20%" cy="18%" r="72%">
+      <stop offset="0%" stop-color="#6C5CE7" stop-opacity="0.95"/>
+      <stop offset="45%" stop-color="#6C5CE7" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#6C5CE7" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="gTeal" cx="86%" cy="15%" r="64%">
+      <stop offset="0%" stop-color="#4ECDC4" stop-opacity="0.9"/>
+      <stop offset="48%" stop-color="#4ECDC4" stop-opacity="0.45"/>
+      <stop offset="100%" stop-color="#4ECDC4" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="gPink" cx="14%" cy="88%" r="66%">
+      <stop offset="0%" stop-color="#F2A6C8" stop-opacity="0.85"/>
+      <stop offset="50%" stop-color="#F2A6C8" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#F2A6C8" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="gIndigo" cx="90%" cy="90%" r="62%">
+      <stop offset="0%" stop-color="#201B44" stop-opacity="0.92"/>
+      <stop offset="55%" stop-color="#201B44" stop-opacity="0.45"/>
+      <stop offset="100%" stop-color="#201B44" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="vignette" cx="50%" cy="47%" r="75%">
+      <stop offset="0%" stop-color="#000000" stop-opacity="0"/>
+      <stop offset="70%" stop-color="#000000" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0.30"/>
+    </radialGradient>
+
+    <path id="zpath" d="M250,268 L774,268 L774,388 L485,636 L774,636 L774,756 L250,756 L250,636 L539,388 L250,388 Z"/>
+
+    <!-- light upper-left half: bright paper -->
+    <linearGradient id="halfLight" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F3EFFF"/>
+      <stop offset="100%" stop-color="#CBBCEF"/>
+    </linearGradient>
+    <!-- shadowed lower-right half: deep violet-indigo -->
+    <linearGradient id="halfDark" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#5B49BC"/>
+      <stop offset="100%" stop-color="#322764"/>
+    </linearGradient>
+
+    <!-- half-plane clips, parallel to the Z diagonal, with a ~22px gap between them -->
+    <clipPath id="clipUL" clipPathUnits="userSpaceOnUse">
+      <polygon points="-938.9,1186.6 1953.5,-182.4 1012.3,-2171.0 -1880.1,-802.0"/>
+    </clipPath>
+    <clipPath id="clipDR" clipPathUnits="userSpaceOnUse">
+      <polygon points="-929.5,1206.4 1962.9,-162.6 2904.1,1826.0 11.7,3195.0"/>
+    </clipPath>
+
+    <filter id="zShadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="18" stdDeviation="22" flood-color="#1A1230" flood-opacity="0.5"/>
+    </filter>
+    <!-- upper-left half lifts above the lower-right half -->
+    <filter id="liftShadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="6" dy="10" stdDeviation="9" flood-color="#140E2C" flood-opacity="0.5"/>
+    </filter>
+  </defs>
+
+  <!-- background -->
+  <rect width="1024" height="1024" fill="#2B2A55"/>
+  <rect width="1024" height="1024" fill="url(#gViolet)"/>
+  <rect width="1024" height="1024" fill="url(#gTeal)"/>
+  <rect width="1024" height="1024" fill="url(#gPink)"/>
+  <rect width="1024" height="1024" fill="url(#gIndigo)"/>
+  <rect width="1024" height="1024" fill="url(#vignette)"/>
+
+  <g filter="url(#zShadow)">
+    <!-- lower-right (shadowed) half -->
+    <use href="#zpath" fill="url(#halfDark)" clip-path="url(#clipDR)"/>
+    <!-- upper-left (bright) half, lifted above with its own shadow onto the dark half -->
+    <use href="#zpath" fill="url(#halfLight)" clip-path="url(#clipUL)" filter="url(#liftShadow)"/>
+  </g>
+</svg>
+</body>
+</html>
