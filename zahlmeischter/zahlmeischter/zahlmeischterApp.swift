@@ -16,8 +16,9 @@ struct zahlmeischterApp: App {
 
     var body: some Scene {
         WindowGroup {
-            DashboardView()
+            AppFlowView()
                 .environment(appState)
+                .preferredColorScheme(.light) // V2: light mode only (design.md)
         }
         .modelContainer(PersistenceController.shared)
     }

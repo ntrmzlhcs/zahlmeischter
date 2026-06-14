@@ -2,20 +2,19 @@
 //  MeshGradientBackground.swift
 //  zahlmeischter
 //
-//  Created by Martin on 13.06.2026.
+//  The app's signature backdrop: the single, continuous "Cool Premium" (light) mesh
+//  from design.md V2 that slowly **breathes**. One instance sits behind the whole app
+//  (Dashboard, group detail, sheets) — never a solid background break. The four corners
+//  carry the violet / teal / pink blobs over a light wash; the edge and centre points
+//  spring between a "rest" and a "drift" arrangement on an ~18s autoreversing loop.
+//
+//  Light only (V2 pivot). Reduce Motion is a hard requirement: when enabled the
+//  animation never starts and a static mesh renders.
 //
 
 import SwiftUI
 
-/// The Dashboard's signature backdrop: the four-stop "Cool Premium" mesh gradient
-/// (design.md) that slowly **breathes**. The four corner control points stay pinned
-/// so the rectangle always fills edge-to-edge; the edge and centre points spring
-/// between a "rest" and a "drift" arrangement, autoreversing forever.
-///
-/// Reduce Motion is a hard requirement (design.md): when enabled, the animation is
-/// never started and a static mesh renders.
 struct MeshGradientBackground: View {
-    @Environment(\.colorScheme) private var colorScheme
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     @State private var isBreathing = false
@@ -25,46 +24,39 @@ struct MeshGradientBackground: View {
             width: 3,
             height: 3,
             points: isBreathing ? Self.driftPoints : Self.restPoints,
-            colors: colorScheme == .dark ? Self.darkStops : Self.lightStops
+            colors: Self.stops
         )
         .ignoresSafeArea()
         .onAppear {
             guard !reduceMotion else { return }
-            withAnimation(.spring(response: 7, dampingFraction: 0.85).repeatForever(autoreverses: true)) {
+            withAnimation(.easeInOut(duration: 9).repeatForever(autoreverses: true)) {
                 isBreathing = true
             }
         }
     }
 
-    // MARK: - Control points (row-major, 3×3; corners pinned)
+    // MARK: - Control points (row-major, 3×3; corners pinned, interior drifts)
 
     private static let restPoints: [SIMD2<Float>] = [
         [0.00, 0.00], [0.50, 0.00], [1.00, 0.00],
-        [0.00, 0.50], [0.50, 0.50], [1.00, 0.50],
+        [0.00, 0.50], [0.48, 0.52], [1.00, 0.50],
         [0.00, 1.00], [0.50, 1.00], [1.00, 1.00],
     ]
 
     private static let driftPoints: [SIMD2<Float>] = [
-        [0.00, 0.00], [0.45, 0.00], [1.00, 0.00],
-        [0.00, 0.55], [0.55, 0.45], [1.00, 0.40],
-        [0.00, 1.00], [0.60, 1.00], [1.00, 1.00],
+        [0.00, 0.00], [0.58, 0.00], [1.00, 0.00],
+        [0.00, 0.42], [0.56, 0.44], [1.00, 0.60],
+        [0.00, 1.00], [0.42, 1.00], [1.00, 1.00],
     ]
 
-    // MARK: - Palettes (same organic arrangement, tuned per appearance)
+    // MARK: - Stops — colour spread across the field over a light centre
 
-    /// Dark mode — the hero experience: deep indigo base, violet, soft teal, and a
-    /// single dusty-pink accent.
-    private static let darkStops: [Color] = [
-        Color(hex: "2B2A55"), Color(hex: "2B2A55"), Color(hex: "6C5CE7"),
-        Color(hex: "6C5CE7"), Color(hex: "4ECDC4"), Color(hex: "F2A6C8"),
-        Color(hex: "4ECDC4"), Color(hex: "6C5CE7"), Color(hex: "2B2A55"),
-    ]
+    private static let center = Color(hex: "EAF1F3")
 
-    /// Light mode — softened/lightened versions of the same four stops.
-    private static let lightStops: [Color] = [
-        Color(hex: "B8B8E8"), Color(hex: "B8B8E8"), Color(hex: "C9BFFF"),
-        Color(hex: "C9BFFF"), Color(hex: "A8E8E2"), Color(hex: "FBD5E8"),
-        Color(hex: "A8E8E2"), Color(hex: "C9BFFF"), Color(hex: "B8B8E8"),
+    private static let stops: [Color] = [
+        Color(hex: "C3B6FF"), Color(hex: "BFD4F2"), Color(hex: "96E7DD"),
+        Color(hex: "C8C0F4"), center,               Color(hex: "9FE3D8"),
+        Color(hex: "9FE0D6"), Color(hex: "F6CFE6"), Color(hex: "FBD0E8"),
     ]
 }
 

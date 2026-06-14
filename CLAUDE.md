@@ -10,10 +10,11 @@ households, travel.
 - **Core idea**: create a group, log shared expenses, split them (equally, by
   percentage, or custom amounts), and see who owes whom — then settle up with
   as few payments as possible.
-- **Tone**: detailed branding/copy/visual design decisions will live in a
-  future `design.md` — this file focuses on technical architecture only.
+- **Tone**: detailed branding/copy/visual design decisions live in `design.md`
+  (the V2 "Cool Premium" light system — light-only, teal accent, universal mesh,
+  papercraft wallet icon) — this file focuses on technical architecture only.
 - **Primary users**: small friend groups, households, and travel groups —
-  likely CH/EU-based, hence the multi-currency emphasis (CHF + EUR at minimum).
+  likely CH/EU-based, hence the multi-currency emphasis (CHF, EUR, USD).
 
 ## Tech Stack
 
@@ -69,6 +70,7 @@ zahlmeischter/
 ├── Logic/                           # framework-agnostic business logic (unit-testable)
 │   ├── SplitCalculator.swift       # equal/percentage/custom split math
 │   ├── DebtSimplifier.swift        # settle-up / minimize-transactions algorithm
+│   ├── GroupBalances.swift         # per-currency net balances (never aggregated)
 │   └── CurrencyFormatting.swift    # currency display helpers
 ├── Views/
 │   ├── Groups/
@@ -102,16 +104,19 @@ sync failures or runtime crashes, not compile errors:
 
 ### Entity sketch (informal — refine during implementation)
 
-- **`ExpenseGroup`**: name, default currency, members, expenses, createdAt
+- **`ExpenseGroup`**: name, members, expenses, settlements, createdAt —
+  **no group-level currency** (V2: currency is booked per `Expense`; see
+  Multi-Currency)
 - **`Member`**: name, optional linked iCloud user ID (for shared groups) vs.
   "placeholder" member (person without the app — Splitwise-style ghost
   participant; CKShare only supports real iCloud participants, so placeholders
   are local-only annotations)
 - **`Expense`**: title, amount, currency code, payer, date, splits, optional
   receipt image reference
-- **`ExpenseSplit`**: expense ref, member ref, share amount, split type
-  (equal/percent/custom)
-- **`Settlement`**: from member, to member, amount, currency, date, status
+- **`ExpenseSplit`**: expense ref, member ref, resolved share amount, optional
+  percent (retained only for `.percentage` splits)
+- **`Settlement`**: from member, to member, amount, currency, date — a recorded
+  payment that clears debt; folded back into `GroupBalances` (implemented)
 
 ## CloudKit Setup & Known Gap
 
@@ -140,9 +145,13 @@ feature** — don't assume "enable CloudKit" alone gets you multi-user groups.
 
 ## Multi-Currency
 
-- **V1 supports CHF and EUR only** — design the currency type so adding more
-  ISO codes later is trivial (e.g. an enum/string-backed `CurrencyCode`, not
-  a hardcoded CHF/EUR boolean).
+- **V1 supports CHF, EUR, and USD** via a string-backed `CurrencyCode` enum —
+  adding more ISO codes later stays a one-line change (never a hardcoded
+  CHF/EUR boolean).
+- **No group-level currency** (V2 pivot). Each `Expense` books its own
+  `currency`; per-member/group balances and settle-up are computed **and
+  displayed per currency and never aggregated across codes** — CHF and EUR
+  appear on separate lines (`GroupBalances` keeps them keyed by `CurrencyCode`).
 - Store all monetary values as **`Decimal`**, never `Double` (avoids
   floating-point rounding errors in split math).
 - **Always display the ISO currency code** (`CHF`, `EUR`, `USD`, ...), never a
@@ -180,6 +189,13 @@ feature** — don't assume "enable CloudKit" alone gets you multi-user groups.
 sharing → settle-up → receipt OCR. Sharing is the highest-risk item
 architecturally — don't leave it for last.
 
+**Status**: all four scopes are implemented locally in the V2 UI (launch +
+onboarding, dashboard, group detail with the Settle-Up bubble header, add
+expense, settle-up, OCR review flow, iMessage/E-Mail invite). Still open:
+CloudKit private sync + the CKShare sharing spike, and percentage/custom split
+*input* (the selector is present; math currently resolves equal, as in the
+prototype).
+
 ## Testing
 
 - **Swift Testing** (`import Testing`, `@Test`, `#expect`) for unit tests:
@@ -194,10 +210,10 @@ architecturally — don't leave it for last.
 
 ```bash
 # Build
-xcodebuild -project zahlmeischter/zahlmeischter.xcodeproj -scheme zahlmeischter -destination 'platform=iOS Simulator,name=iPhone 16' build
+xcodebuild -project zahlmeischter/zahlmeischter.xcodeproj -scheme zahlmeischter -destination 'platform=iOS Simulator,name=iPhone 17' build
 
 # Run tests
-xcodebuild -project zahlmeischter/zahlmeischter.xcodeproj -scheme zahlmeischter -destination 'platform=iOS Simulator,name=iPhone 16' test
+xcodebuild -project zahlmeischter/zahlmeischter.xcodeproj -scheme zahlmeischter -destination 'platform=iOS Simulator,name=iPhone 17' test
 ```
 
 ## Localization & Regional Formatting
@@ -213,7 +229,9 @@ xcodebuild -project zahlmeischter/zahlmeischter.xcodeproj -scheme zahlmeischter 
 - For both dates and numbers, explicitly use `Locale(identifier: "de_CH")`
   (or fixed format strings) rather than `Locale.current` — Swiss formatting
   is required even if the device itself is set to a different locale.
-- Detailed tone/copy/branding decisions: see future `design.md`.
+- Detailed tone/copy/branding decisions: see `design.md`.
+- **Status**: the V2 UI uses inline Swiss-German string literals; externalizing
+  them into `Localizable.xcstrings` (and adding `en`) is still open.
 
 ## Open Questions / Deferred Decisions
 

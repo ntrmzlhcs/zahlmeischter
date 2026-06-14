@@ -22,6 +22,7 @@ enum PersistenceController {
         Member.self,
         Expense.self,
         ExpenseSplit.self,
+        Settlement.self,
     ])
 
     /// On-disk container backing the running app.

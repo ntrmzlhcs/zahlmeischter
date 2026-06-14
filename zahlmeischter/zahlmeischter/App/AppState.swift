@@ -27,9 +27,18 @@ final class AppState {
 
     private static let myNameDefaultsKey = "myName"
 
+    /// Whether the user has finished onboarding. Persisted per-device; gates whether the
+    /// launch animation hands off to the intro or straight to the app.
+    var hasOnboarded: Bool {
+        didSet { UserDefaults.standard.set(hasOnboarded, forKey: Self.hasOnboardedDefaultsKey) }
+    }
+
+    private static let hasOnboardedDefaultsKey = "hasOnboarded"
+
     init(activeGroup: ExpenseGroup? = nil) {
         self.activeGroup = activeGroup
         self.myName = UserDefaults.standard.string(forKey: Self.myNameDefaultsKey) ?? ""
+        self.hasOnboarded = UserDefaults.standard.bool(forKey: Self.hasOnboardedDefaultsKey)
     }
 
     /// The member flagged as the current user within `group` — the "you" the dashboard

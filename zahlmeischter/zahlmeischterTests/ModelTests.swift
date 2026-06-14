@@ -27,8 +27,7 @@ struct ModelTests {
     func defaults() {
         let group = ExpenseGroup()
         #expect(group.name == "")
-        #expect(group.currency == .chf)
-        #expect(group.deletedAt == nil)
+        #expect(group.deletedAt == nil) // V2: no group-level currency — booked per expense
 
         let expense = Expense()
         #expect(expense.amount == 0)

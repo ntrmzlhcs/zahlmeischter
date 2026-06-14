@@ -20,8 +20,6 @@ final class ExpenseGroup {
     /// Stable, client-generated identity (CloudKit can't enforce uniqueness).
     var uuid: UUID = UUID()
     var name: String = ""
-    /// Default currency for the group; an individual `Expense` may override it.
-    var currency: CurrencyCode = CurrencyCode.chf
     var createdAt: Date = Date.now
     /// Soft-delete tombstone (`nil` ⇒ active). CloudKit deletion is eventually consistent.
     var deletedAt: Date? = nil
@@ -35,16 +33,17 @@ final class ExpenseGroup {
     @Relationship(deleteRule: .cascade, inverse: \Expense.group)
     var expenses: [Expense]? = []
 
+    @Relationship(deleteRule: .cascade, inverse: \Settlement.group)
+    var settlements: [Settlement]? = []
+
     init(
         uuid: UUID = UUID(),
         name: String = "",
-        currency: CurrencyCode = .chf,
         createdAt: Date = .now,
         deletedAt: Date? = nil
     ) {
         self.uuid = uuid
         self.name = name
-        self.currency = currency
         self.createdAt = createdAt
         self.deletedAt = deletedAt
     }
